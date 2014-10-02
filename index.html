@@ -33,22 +33,45 @@
           <h2>Välkommen till sMap.</h2>
 <p>Malmö, Helsingborg, Lund och Kristianstad har byggt en gemensam plattform för kartor att använda på kommunernas respektive webbplatser under namnet sMap.</p>
 <p>Denna sidan är till för att intresserade av vårt samarbete och kartor ska få information om hur det fortskrider. </p>
-<p>Kolla gärna våra <a href="#exempel">exempel</a></p>
+<p>Kolla gärna våra <a href="#exempel">exempel</a> och vårt <a href="#api">API</a></p>
 
 <p>Vill ni veta mer om samarbetet <a href="#kontakt">kontakta oss</a> gärna.</p>
 
+<section id="om">
+<p>
+<h2>Om sMap</h2>
+</p>
+<p>
+Syfte med sMap:
+</p>
+<p>
+Att gemensamt ta fram ett koncept angående tjänster för webbkartor.
+Att genom att ta ansvar för utvecklingen av olika delar i konceptet och dela med sig av resultatet minska utvecklingskostnaderna för respektive part.
+Att skapa bättre förutsättningar för våra GIS/GIT-utvecklare vad gäller kompetensutveckling och erfarenhetsutbyte samt minska sårbarheten för respektive organisation.
+Applikationen bygger på OpenLayers, jQuery, Tilecache, GeoServer, PostGIS mm och inom projektet använder vi oss av Trac, Eclipse och Subversion. I projektet arbetar vi enligt Scrum-metoden.
+</p>
+<p>
+Vår testgrupp har testat applikationen för flera olika webbläsare (IE, Firefox, Chrome, Safari mm i olika operativsystem).
+</p>
+<p>
+Vi har en gemensam driftmiljö på en linuxserver med GeoServer, PostGIS och andra OpenSource-program.
+</p>
+</section>
+
+
 <section id="exempel">
 <p>
-<h2>sMap-mobile</h2>
-
+<h2>Exempel</h2>
+</p>
+<p>
+<strong>sMap mobile</strong>
 <li><a href="http://xyz.malmo.se/rest/smap-mobile/index.html?center=13,55.605&amp;zoom=15&amp;config=kartdagar_malmo.js" target="_blank">Malmö</a></li>
 <li><a href="http://xyz.malmo.se/rest/smap-mobile/index.html?center=14.229,57.787&amp;zoom=15&amp;config=kartdagar_jkpg.js" target="_blank">Jönköping</a></li>
 <li><a href="http://xyz.malmo.se/rest/smap-mobile/index.html?center=12.97,55.57&amp;zoom=12&amp;config=config_pkmobile.js" target="_blank">Pedagogiska kartor</a> (Malmö)</li>
 <li><a href="http://xyz.malmo.se/rest/smap-mobile/index.html?center=12.97,55.57&amp;zoom=12&amp;config=config_tillgg.js" target="_blank">Tillgänglighetsguiden </a>(Malmö)</li>
 </p>
 <p>
-<h2>sMap</h2>
-
+<strong>sMap</strong>
 <li><a href="http://www.kristianstad.se/karta" target="_blank">Kristianstad.se</a></li>
 <li><a href="http://www.malmo.se/stadsatlas/ " target="_blank">Malmö StadsAtlas</a></li>
 <li><a href="http://www.lund.se/Tillbehor/Karta-over-Lund/" target="_blank">Lund.se</a></li>
@@ -60,11 +83,64 @@
 </p>
 </section>
 
+<section id="api">
+<h2>Rest-API</h2>
+					
+<div >
+<p>Version 1.0, parametrar</p>
+<strong>zoom</strong>
+<p>Zoomintervall 0-7, 0=mest utzoomad.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?zoom=5">http://kartor.smap.se/map-dev/?zoom=5</a></p>
+<p>I förra versionen kallades zoom för zoomlevel.</p>
+<strong>center</strong>
+<p>Starta kartan över en viss centrumpunken. Punkten ska vara  i Sweref 99TM (easting, northing)</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?center=374419,6163146"> http://kartor.smap.se/map-dev/?center=374419,6163146</a></p>
+<strong>bl</strong>
+<p>Starta kartan med en viss bakgrundskarta. Dessa finnas att välja Skanekarta, Orto2010, Hybrid2010 och Orto1940.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?bl=Orto2010">http://kartor.smap.se/map-dev/?bl=Orto2010</a></p>
+<p>I förra versionen kallades bl för maptype.</p>
+<strong>ol</strong>
+<p>Starta kartan med ett visst lager tänt. Lager att välja på är Hållplatser (hallplatser)&#8230;</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?ol=hallplatser">http://kartor.smap.se/map-dev/?ol=hallplatser</a></p>
+<p>I förra versionen kallades ol för overlays.</p>
+<strong>poi</strong>
+<p>Markera en viss adress i kartan från start. Adressen måste vara utf-encodad.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?poi=AUGUST%20PALMS%20PLATS%201,%20MALM%C3%96">http://kartor.smap.se/map-dev/?poi=AUGUST%20PALMS%20PLATS%201,%20MALM%C3%96</a></p>
+<strong>coords</strong>
+<p>Centrera över, och sätt ut markering på, en specifik koordinat. Applikationen stöder en rad EPSG och känner av vilket som används och om inskickad koordinat är inom kartans utsträckning.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?coords=1419039,7569572">http://kartor.smap.se/map-dev/?coords=1419039,7569572</a></p>
+<p>Ny parameter i denna version.</p>
+<strong>lang</strong>
+<p>Ändra till ett annat språket på funktionerna. Gäller inte karttexter. Svenska är default och det går bra att ändra till engelska.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?lang=en">http://kartor.smap.se/map-dev/?lang=en</a></p>
+<p>Ny parameter i denna version.</p>
+<strong>op</strong>
+<p>Visa bakgrundskartor och lager med genomskinlighet. Ange värdera i en kommaseparerad lista där första siffran är bakgrundskartan och resterande i samma ordning som du angett lagren (ol).</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?op=50">http://kartor.smap.se/map-dev/?op=50</a></p>
+<p>Ny parameter i denna version.</p>
+<strong>features</strong>
+<p>Använd kartans verktyg, <em>Rita</em>, och välj sedan <em>Kopiera länk</em>.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?addmarker=UE9JTlQoMzczMjE3JTIwNjE2Mzk0MCksU2xvdHQsMA==">http://kartor.smap.se/map-dev/?addmarker=UE9JTlQoMzczMjE3JTIwNjE2Mzk0MCksU2xvdHQsMA==</a></p>
+<strong>config</strong>
+<p>Om du vill använda en annan konfigurationsfil.</p>
+<p>Exempel: <a href="http://kartor.smap.se/map-dev/?config=config.js">http://kartor.smap.se/map-dev/?config=config.js</a></p>
+<p>Ny parameter i denna version.</p>
+<strong>Exempel med karta i en iframe</strong>
+<p><_iframe src="http://kartor.smap.se/skane/index_map.html?poi=AUGUST%20PALMS%20PLATS%201,%20MALM%C3%96&#038;center=374580,6163192.5&#038;zoomlevel=5&#038;maptype=Skanekarta&#038;kommun=smap" width="500" height="500" frameborder="1"><_/iframe></p>
+<p><iframe src="http://kartor.smap.se/skane/index_map.html?poi=AUGUST%20PALMS%20PLATS%201,%20MALM%C3%96&#038;center=374580,6163192.5&#038;zoomlevel=5&#038;maptype=Skanekarta&#038;kommun=smap" width="500" height="500" frameborder="1"></iframe> </p>
+<p>
+<br/>
+<strong>Äldre versioner</strong>
+<p>Länkar skapade i äldre versioner kommer att fungera&#8230;</p>
+</div>
 
+</section>
 
 <section id="kontakt">
 <p>
 <h2>Kontakt</h2>
+</p>
+<p>
 	<div>
 		<table border="1">
 		<tbody>
@@ -94,6 +170,7 @@
 		</tr>
 		</tbody>
 		</table>
+		<br/>
 		<table border="1">
 		<tbody>
 		<tr>
